@@ -8,15 +8,15 @@
 import random
 
 class fighter(object):
-	def __init__(self,name,health,hit,chance):
-		self.name=name
-		self.health=str(health)
-		self.hit=str(hit)
-		self.chance=str(chance)
+	def __init__(self):
+		self.name = raw_input("Введите имя: ")
+		self.health = int(raw_input("Введите количество хит-поинтов: "))
+		self.hit = int(raw_input("Введите показатель урона: "))
+		self.chance = int(raw_input("Введите показатель меткости: "))
 		self.full_health=self.health
 		
 	def get_status(self):
-		print "%s имеет %s/%s здоровья" % (name,self.health,self.full_health)
+		print "%s имеет %s/%s здоровья" % (self.name,self.health,self.full_health)
 		
 	def decrease_health(self,damage):
 		self.health -= damage
@@ -42,7 +42,7 @@ print "Битва лицо на лицо"
 Choose hero stats
 """
 print "создание вашего персонажа"
-create_char("you")
+you = fighter()
 print "-------------------------"
 
 
@@ -51,7 +51,7 @@ Choose enemy stats
 """
 print
 print "создание противника"
-create_char("opponent")
+opponent = fighter()
 print "-------------------------"
 
 
@@ -73,6 +73,7 @@ while not somebody_dead:
 	if you.hit_face():
 		print "Вы попали"
 		opponent.decrease_health(you.hit)
+		opponent.get_status()
 		if opponent.health <= 0:
 			print "Вы выиграли!"
 			break
