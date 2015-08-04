@@ -8,12 +8,13 @@
 import random
 
 class fighter(object):
-	def __init__(self):
-		self.name = raw_input("Введите имя: ")
-		self.health = int(raw_input("Введите количество хит-поинтов: "))
-		self.hit = int(raw_input("Введите показатель урона: "))
-		self.chance = int(raw_input("Введите показатель меткости: "))
+	def __init__(self,lst):
+		self.name = lst["name"]
+		self.health = lst["health"]
+		self.hit = lst["hit"]
+		self.chance = lst["chance"]
 		self.full_health=self.health
+		print "Боец создан"
 		
 	def get_status(self):
 		print "%s имеет %s/%s здоровья" % (self.name,self.health,self.full_health)
@@ -25,12 +26,13 @@ class fighter(object):
 		if self.chance >= random.randint(0,100):
 			return True
 		
-def create_char(hero):
-	name = raw_input("Введите имя: ")
-	health = raw_input("Введите количество хит-поинтов: ")
-	hit = raw_input("Введите показатель урона: ")
-	chance = raw_input("Введите показатель меткости: ")
-	hero = fighter(name,health,hit,chance)
+def create_fighter_manual():
+	lst={}
+	lst["name"] = raw_input("Введите имя: ")
+	lst["health"] = int(raw_input("Введите количество хит-поинтов: "))
+	lst["hit"] = int(raw_input("Введите показатель урона: "))
+	lst["chance"] = int(raw_input("Введите показатель меткости: "))
+	return lst
 	
 	
 """
@@ -42,7 +44,8 @@ print "Битва лицо на лицо"
 Choose hero stats
 """
 print "создание вашего персонажа"
-you = fighter()
+stats_your = create_fighter_manual()
+you = fighter(stats_your)
 print "-------------------------"
 
 
@@ -51,7 +54,8 @@ Choose enemy stats
 """
 print
 print "создание противника"
-opponent = fighter()
+stats_oppenent= create_fighter_manual()
+opponent = fighter(stats_oppenent)
 print "-------------------------"
 
 
