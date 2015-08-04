@@ -82,5 +82,16 @@ while not somebody_dead:
 	turn += 1
 	print
 	
+	print "Ход противника"
+	if opponent.hit_face():
+		print "Противник попал, вы раненны на",opponent.hit
+		you.decrease_health(opponent.hit)
+		you.get_status()
+		if you.health <= 0:
+			print "Ваш персонаж погиб"
+			break
+	else: 
+		print "Противник промазал"
+print "-------------------------"
 print "Всем спаибо, все свободны"
 	
